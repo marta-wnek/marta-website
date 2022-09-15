@@ -8,8 +8,11 @@ params:
   banner:
     buttonText: About me
     subtitle: |-
-      A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP
-      AND RELEASED UNDER THE CREATIVE COMMONS.
+      I am passionate to decipher the future of businesses with use of Data Analytics. 
+      Because as Sir Churchill said: “The farther back you can look, the farther
+      forward you are likely to see.”
+
+― Winston Churchill
     title: Hi, my name is Marta
   blog: {}
   contact:
@@ -82,8 +85,8 @@ params:
     enable: yes
     showcase:
       - image: pic01.jpg
-        subtitle: CV
-        title: Me in a nutshell
+        subtitle: Me in a nutshell
+        title: CV
         url: blogs/aliquam
       - image: pic02.jpg
         subtitle: How I got into Analytics
