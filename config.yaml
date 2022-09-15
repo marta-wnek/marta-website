@@ -6,7 +6,7 @@ googleAnalytics: ''
 disqusShortname: ''
 params:
   banner:
-    buttonText: Get Started
+    buttonText: About me
     subtitle: |-
       A RESPONSIVE SITE TEMPLATE DESIGNED BY HTML5 UP
       AND RELEASED UNDER THE CREATIVE COMMONS.
@@ -69,7 +69,7 @@ params:
     links:
       - name: Home
         url: '#'
-      - name: Blogs
+      - name: My projects
         url: blogs
       - name: Generic Blog
         url: blogs/ipsum
@@ -82,12 +82,12 @@ params:
     enable: yes
     showcase:
       - image: pic01.jpg
-        subtitle: Ipsum Dolor Sit Amet
-        title: Aliquam
+        subtitle: CV
+        title: Me in a nutshell
         url: blogs/aliquam
       - image: pic02.jpg
-        subtitle: Feugiat Amet Tempus
-        title: Tempus
+        subtitle: How I got into Analytics
+        title: My journey
         url: blogs/tempus
       - image: pic03.jpg
         subtitle: Lorem Etiam Nullam
