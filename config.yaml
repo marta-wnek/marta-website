@@ -71,9 +71,9 @@ params:
     links:
       - name: Home
         url: '#'
-      - name: My projects
+      - name: About me
         url: blogs
-      - name: Generic Blog
+      - name: My projects
         url: blogs/ipsum
       - name: Elements
         url: elements.html
@@ -90,7 +90,7 @@ params:
       - image: pic05.jpg
         subtitle: How I got into Analytics
         title: My journey
-        url: blogs/tempus
+        url: blogs/bempus
       - image: pic03.jpg
         subtitle: Lorem Etiam Nullam
         title: Magna
