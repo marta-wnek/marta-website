@@ -1,22 +1,22 @@
 ---
-title: "Project 1"
-description: "Share of renewable energy production in the world"
-slug: "magna"
-image: pic09.jpg
-keywords: ""
-categories: 
-- ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
+#title: "Project 1"
+#description: "Share of renewable energy production in the world"
+#slug: "magna"
+#image: pic09.jpg
+#keywords: ""
+#categories: 
+#- ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
 - ""
-date: 2017-10-31T22:26:09-05:00
-draft: false
+#date: 2017-10-31T22:26:09-05:00
+#draft: false
 ---
 
 ---
-categories:  
-- ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
+#categories:  
+#- ""    #the front matter should be like the one found in, e.g., blog2.md. It cannot be like the normal Rmd we used
 - ""
-date: "2021-09-30"
-description: Risk-Return of DJIA stocks # the title that will show up once someone gets to this page
+#date: "2021-09-30"
+#description: Risk-Return of DJIA stocks # the title that will show up once someone gets to this page
 draft: false
 image: spices.jpg # save picture in \static\img\blogs. Acceptable formats= jpg, jpeg, or png . Your iPhone pics wont work
 
