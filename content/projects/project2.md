@@ -98,6 +98,9 @@ knitr::include_graphics(here::here("images", "renewables.png"), error = FALSE)
 ```
 
 
+
+
+
 **NOTE:**:
 - Decided to filter on `year == 2019` only to replicate the graphs shown since the subtitle, in the plots above it says "2019 data"
 - Needed to extract specific types of energy to create a 'renewable energy' column:
@@ -112,7 +115,12 @@ renewables_summary <- energy %>%
   select(-label) %>%
   filter(year == 2019) %>%
   pivot_wider(names_from = variable, values_from = value) %>% #Transform to wide form dataset
-  mutate(renewables_proportion = round((elec_hydro + elec_solar + elec_wind + elec_renew_other) / elecprod, 3) * 100) %>% #Create proportion variable.  Take note that we round to 3 here to perfectly replicate the graph shown above. Any other value will return a slightly different plot
+  mutate(renewables_proportion = round((elec_hydro + elec_solar +
+  elec_wind + elec_renew_other) / elecprod, 3) * 100) %>% 
+  #Create proportion variable.  
+  #Take note that we round to 3 here to perfectly replicate the
+  #graph shown above. 
+  #Any other value will return a slightly different plot
   arrange(desc(renewables_proportion)) %>% 
   ungroup() %>%
   filter(renewables_proportion > 0)
@@ -126,7 +134,9 @@ bottom_20_renewables <- renewables_summary %>%
   slice_min(n = 20, order_by = renewables_proportion)
 
 # Store a plot of top 20 countries reordered on proportion
-top_20_plot <- ggplot(top_20_renewables, aes(x = renewables_proportion, y = fct_reorder(country, renewables_proportion))) +
+top_20_plot <- ggplot(top_20_renewables, 
+aes(x = renewables_proportion, 
+y = fct_reorder(country, renewables_proportion))) +
   geom_col(orientation = "y")  +
   scale_x_continuous(labels = scales::percent_format(scale = 1)) +
   labs(title = str_wrap("Highest % of renewables in energy production", 30), x = "Percent") +
@@ -137,7 +147,9 @@ top_20_plot <- ggplot(top_20_renewables, aes(x = renewables_proportion, y = fct_
         axis.text.y = element_text(size = 5))
 
 # Store a plot of bottom 20 countries reordered on proportion
-bottom_20_plot <- ggplot(bottom_20_renewables, aes(x = renewables_proportion, y = fct_reorder(country, renewables_proportion))) +
+bottom_20_plot <- ggplot(bottom_20_renewables, 
+aes(x = renewables_proportion, 
+y = fct_reorder(country, renewables_proportion))) +
   geom_col(orientation = "y")  +
   scale_x_continuous(labels = scales::percent_format(scale = 1)) +
   labs(title = str_wrap("Lowest % of renewables in energy production", 30), x = "Percent") +
@@ -163,7 +175,7 @@ top_20_plot + bottom_20_plot +
 
 # Conclusion:
 
-From observing the animation, two features are striking.
+From observing the animation, two features are striking:
 
 1. The first would be that we observe an **inverse relationship between CO2 emissions and % renewables**; that is, *when a larger proportion of a country's energy production comes from renewable sources, the lower the CO2 emissions for that country and vice-versa*. 
 
@@ -177,6 +189,8 @@ This is represented by the points that move along a north-west to south-east lin
 
 Likewise, *many other countries changed the extent to which they relied on renewable energy in their energy output but had no change to CO2 emissions*; these were mainly countries with relatively lower CO2 emissions to begin with.
 => This pattern implies that, **for these countries, there exists almost no correlation between CO2 per cap and % renewables** across time.
+
+
 
 
 
