@@ -64,9 +64,9 @@ params:
   image: ''
   name: Your name
   navigation:
-    #button1:
-    #  - name: Contact
-      #  url: '#'/address
+     button1:
+      - name: Contact
+        url: '#'/name
    # button2:
     #  - name: Log In
      #   url: '#'
@@ -77,8 +77,8 @@ params:
         url: blogs/
       - name: My projects
         url: projects/
-      - name: Elements
-        url: elements.html
+     # - name: Elements
+      #  url: elements.html
     menu: Menu
     subtitle: By HTML5 Up
     title: Forty
@@ -89,13 +89,13 @@ params:
         subtitle: Me in a nutshell
         title: CV
         url: blogs/aliquam
-      - image: pic05.jpg
+         - image: pic05.jpg
         subtitle: How I got into Analytics
         title: My journey
         url: blogs/bempus
-        buttonMe:
-        - name: Read my story
-          url: blogs/bempus    
+          button3:
+            - name: Read my story
+              url: blogs/bempus
       - image: pic10.jpg
         subtitle: Climate Change and Anomalies
         title: Ecosystem
