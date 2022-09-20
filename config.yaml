@@ -66,7 +66,7 @@ params:
   navigation:
      button1:
       - name: Contact
-        url: '#'/name
+        url: '#'
    # button2:
     #  - name: Log In
      #   url: '#'
@@ -94,8 +94,8 @@ params:
         title: My journey
         url: blogs/bempus
           button3:
-            - name: Read my story
-              url: blogs/bempus
+    #        - name: Read my story
+     #         url: blogs/bempus
       - image: pic10.jpg
         subtitle: Climate Change and Anomalies
         title: Ecosystem
