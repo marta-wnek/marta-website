@@ -169,7 +169,7 @@ top_20_plot + bottom_20_plot +
 ```
 
 
-image: renewables1.jpg
+![RenewablesPercentagePlot](renewables1.jpg)
 
 
 
