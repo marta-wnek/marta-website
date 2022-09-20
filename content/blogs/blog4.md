@@ -12,6 +12,11 @@ title: Me in a nutshell
 
 ---
 
+[[params.navigation.links]]
+  name = "Resume"
+  url = "blogs/CV_MWnek.pdf"
+  
+  
 View my CV [here](file:///C:/Users/marta/OneDrive/Pulpit/LBS/CV_Marta%20Wn%C4%99k.pdf).
 
 
