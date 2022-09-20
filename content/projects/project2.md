@@ -14,9 +14,9 @@ title: Renewable Energy Production
 
 # Objectives:
 
-The purpose of this project is to conduct an analysis of:
--
--
+The purpose of this project is to:
+- analyse which countries have the highest and lowest % contribution of renewables in energy production;
+- explore the relationship between CO2 per capita emissions and the deployment of renewables.
 
 
 
@@ -101,7 +101,7 @@ knitr::include_graphics(here::here("images", "renewables.png"), error = FALSE)
 
 
 
-**NOTE:**:
+**NOTE:**
 - Decided to filter on `year == 2019` only to replicate the graphs shown since the subtitle, in the plots above it says "2019 data"
 - Needed to extract specific types of energy to create a 'renewable energy' column:
 
@@ -168,7 +168,7 @@ top_20_plot + bottom_20_plot +
   
 ```
 
-![](renewables2.jpeg)
+![](renewables1.jpg)
 
 
 
