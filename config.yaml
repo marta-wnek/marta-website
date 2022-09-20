@@ -65,8 +65,8 @@ params:
   name: Your name
   navigation:
     button1:
-      - name: Get Started
-        url: blogs
+      - name: Contact
+        url: blog/contact
    # button2:
     #  - name: Log In
      #   url: '#'
@@ -93,6 +93,9 @@ params:
         subtitle: How I got into Analytics
         title: My journey
         url: blogs/bempus
+        buttonMe:
+        - name: Read my story
+          url: blogs/bempus    
       - image: pic10.jpg
         subtitle: Climate Change and Anomalies
         title: Ecosystem
