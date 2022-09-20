@@ -75,6 +75,7 @@ params:
         url: '#'
       - name: About me
         url: blogs/aliquam
+        url: blogs/bempus
       - name: My projects
         url: blogs/ipsum
       - name: Elements
