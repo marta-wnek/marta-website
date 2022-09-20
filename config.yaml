@@ -10,8 +10,10 @@ params:
     subtitle: |-
       Passionate to decipher the future of businesses with use of Data Analytics.
       
-      As Sir Churchill said: "The farther back you can look, the farther
-      forward you can see."      
+      As Sir Churchill said: 
+      > The farther back you can look, the farther
+      forward you can see.
+      
     title: Hi, my name is Marta
   blog: {}
   contact:
