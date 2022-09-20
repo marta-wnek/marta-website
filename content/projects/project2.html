@@ -1,0 +1,245 @@
+---
+categories:
+- ""
+- ""
+date: "2017-10-31T22:42:51-05:00"
+description: Share of renewable energy production in the world.
+draft: false
+image: pic03.jpg
+keywords: ""
+slug: zliquam
+title: Renewable Energy Production
+---
+
+
+
+<p>The following <strong><em>layout settings</em></strong> are made:</p>
+<p>The following <strong><em>packages</em></strong> are installed in RStudio:</p>
+<div id="objectives" class="section level1">
+<h1>Objectives:</h1>
+<p>The purpose of this project is to:
+- analyse which countries have the highest and lowest % contribution of renewables in energy production;
+- explore the relationship between CO2 per capita emissions and the deployment of renewables.</p>
+</div>
+<div id="data" class="section level1">
+<h1>Data:</h1>
+<p>The National Bureau of Economic Research (NBER) has a a very interesting data set on the adoption of about 200 technologies in more than 150 countries since 1800. This is the<a href="https://www.nber.org/research/data/cross-country-historical-adoption-technology">Cross-country Historical Adoption of Technology (CHAT) dataset</a>.</p>
+<p>The following is a description of the variables:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>variable</strong></th>
+<th><strong>class</strong></th>
+<th><strong>description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>variable</td>
+<td>character</td>
+<td>Variable name</td>
+</tr>
+<tr class="even">
+<td>label</td>
+<td>character</td>
+<td>Label for variable</td>
+</tr>
+<tr class="odd">
+<td>iso3c</td>
+<td>character</td>
+<td>Country code</td>
+</tr>
+<tr class="even">
+<td>year</td>
+<td>double</td>
+<td>Year</td>
+</tr>
+<tr class="odd">
+<td>group</td>
+<td>character</td>
+<td>Group (consumption/production)</td>
+</tr>
+<tr class="even">
+<td>category</td>
+<td>character</td>
+<td>Category</td>
+</tr>
+<tr class="odd">
+<td>value</td>
+<td>double</td>
+<td>Value (related to label)</td>
+</tr>
+</tbody>
+</table>
+<p><em>Here, I used the code to load and organise/tidy the data:</em></p>
+<pre class="r"><code>technology &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-07-19/technology.csv&#39;)
+
+#get all technologies
+labels &lt;- technology %&gt;% 
+  distinct(variable, label)
+
+# Get country names using &#39;countrycode&#39; package
+technology &lt;- technology %&gt;% 
+  filter(iso3c != &quot;XCD&quot;) %&gt;% 
+  mutate(iso3c = recode(iso3c, &quot;ROM&quot; = &quot;ROU&quot;),
+         country = countrycode(iso3c, origin = &quot;iso3c&quot;, destination = &quot;country.name&quot;),
+         country = case_when(
+           iso3c == &quot;ANT&quot; ~ &quot;Netherlands Antilles&quot;,
+           iso3c == &quot;CSK&quot; ~ &quot;Czechoslovakia&quot;,
+           iso3c == &quot;XKX&quot; ~ &quot;Kosovo&quot;,
+           TRUE           ~ country))
+
+#make smaller dataframe on energy
+energy &lt;- technology %&gt;% 
+  filter(category == &quot;Energy&quot;)
+
+# download CO2 per capita from World Bank using {wbstats} package
+# https://data.worldbank.org/indicator/EN.ATM.CO2E.PC
+co2_percap &lt;- wb_data(country = &quot;countries_only&quot;, 
+                      indicator = &quot;EN.ATM.CO2E.PC&quot;, 
+                      start_date = 1970, 
+                      end_date = 2022,
+                      return_wide=FALSE) %&gt;% 
+  filter(!is.na(value)) %&gt;% 
+  #drop unwanted variables
+  select(-c(unit, obs_status, footnote, last_updated))
+
+# get a list of countries and their characteristics
+# we just want to get the region a country is in and its income level
+countries &lt;-  wb_cachelist$countries %&gt;% 
+  select(iso3c,region,income_level)</code></pre>
+<p><strong>NOTE:</strong>
+This is a very rich data set, not just for energy and CO2 data, but for many other technologies.</p>
+<p>First, I:
+- Produced a graph with the countries with the highest and lowest % contribution of renewables in energy production.
+<em>This is made up of <code>elec_hydro</code>, <code>elec_solar</code>, <code>elec_wind</code>, and <code>elec_renew_other</code>.</em>
+- Used the <em>patchwork</em> package to assemble the two charts next to each other:</p>
+<p><img src="../../images/renewables.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>NOTE:</strong>
+- Decided to filter on <code>year == 2019</code> only to replicate the graphs shown since the subtitle, in the plots above it says “2019 data”
+- Needed to extract specific types of energy to create a ‘renewable energy’ column:</p>
+<pre class="r"><code># Create country&#39;s proportion of total energy production that stems from renewable sources
+# We used 2019 data only (see NOTE above code chunk)
+
+renewables_summary &lt;- energy %&gt;%
+  select(-label) %&gt;%
+  filter(year == 2019) %&gt;%
+  pivot_wider(names_from = variable, values_from = value) %&gt;% #Transform to wide form dataset
+  mutate(renewables_proportion = round((elec_hydro + elec_solar +
+  elec_wind + elec_renew_other) / elecprod, 3) * 100) %&gt;% 
+  #Create proportion variable.  
+  #Take note that we round to 3 here to perfectly replicate the
+  #graph shown above. 
+  #Any other value will return a slightly different plot
+  arrange(desc(renewables_proportion)) %&gt;% 
+  ungroup() %&gt;%
+  filter(renewables_proportion &gt; 0)
+
+# Extract top 20 countries by renewable energy proportion
+top_20_renewables &lt;- renewables_summary %&gt;% 
+  slice_max(n = 20, order_by = renewables_proportion)
+
+# Extract bottom 20 countries by renewable energy proportion  
+bottom_20_renewables &lt;- renewables_summary %&gt;% 
+  slice_min(n = 20, order_by = renewables_proportion)
+
+# Store a plot of top 20 countries reordered on proportion
+top_20_plot &lt;- ggplot(top_20_renewables, 
+aes(x = renewables_proportion, 
+y = fct_reorder(country, renewables_proportion))) +
+  geom_col(orientation = &quot;y&quot;)  +
+  scale_x_continuous(labels = scales::percent_format(scale = 1)) +
+  labs(title = str_wrap(&quot;Highest % of renewables in energy production&quot;, 30), x = &quot;Percent&quot;) +
+  theme(plot.title = element_text(size = 12, hjust = 0.5),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 10),
+        axis.text.y = element_text(size = 5))
+
+# Store a plot of bottom 20 countries reordered on proportion
+bottom_20_plot &lt;- ggplot(bottom_20_renewables, 
+aes(x = renewables_proportion, 
+y = fct_reorder(country, renewables_proportion))) +
+  geom_col(orientation = &quot;y&quot;)  +
+  scale_x_continuous(labels = scales::percent_format(scale = 1)) +
+  labs(title = str_wrap(&quot;Lowest % of renewables in energy production&quot;, 30), x = &quot;Percent&quot;) +
+  theme(plot.title = element_text(size = 12, hjust = 0.5),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(size = 10),
+        axis.text.y = element_text(size = 5))
+
+# Use patchwork package to create comparison plot
+top_20_plot + bottom_20_plot +
+  plot_annotation(title = &quot;Highest and lowest % of renewables in energy production&quot;,
+                  subtitle = &quot;2019 data&quot;) +
+  theme(plot.title = element_text(size = 14),
+        plot.subtitle = element_text(size = 12))</code></pre>
+<p><img src="/projects/project2_files/figure-html/renewables%20proportion-1.png" width="648" style="display: block; margin: auto;" /></p>
+<div class="figure">
+<img src="renewables1.png" alt="" />
+<p class="caption">RenewablesPercentagePlot</p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion:</h1>
+<p>From observing the animation, two features are striking:</p>
+<ol style="list-style-type: decimal">
+<li>The first would be that we observe an <strong>inverse relationship between CO2 emissions and % renewables</strong>; that is, <em>when a larger proportion of a country’s energy production comes from renewable sources, the lower the CO2 emissions for that country and vice-versa</em>.</li>
+</ol>
+<p>This is represented by the points that move along a north-west to south-east line in each of the income group plots. This can mostly be seen in all facets except “Low Income”; these countries had CO2 emissions that stayed pretty much constant no matter how their % renewables changed.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>The second pattern we notice is that for <strong>countries in the High Income</strong> group, there <strong>exist a few select countries in which % renewable energy production proportion remained relatively constant despite CO2 emissions fluctuating drastically</strong> (CO2 emissions changed perhaps due to compliance to climate change regulations); <strong>these are also the same countries with the highest CO2 emissions amongst all other countries</strong>.</li>
+</ol>
+<p>Likewise, <em>many other countries changed the extent to which they relied on renewable energy in their energy output but had no change to CO2 emissions</em>; these were mainly countries with relatively lower CO2 emissions to begin with.
+=&gt; This pattern implies that, <strong>for these countries, there exists almost no correlation between CO2 per cap and % renewables</strong> across time.</p>
+</div>
+<div id="animation" class="section level1">
+<h1>Animation:</h1>
+<p>I produced an animation to explore the relationship between
+CO2 per capita emissions and the deployment of renewables:</p>
+<p><img src="../../images/animation.gif" width="100%" style="display: block; margin: auto;" /></p>
+<p>To create this animation I:
+- Manipulated the date, and
+- Created the graph in the standard ggplot way.</p>
+<p><em>The only <code>gganimate</code> layers I needed to add to the graphs are:</em></p>
+<pre><code>  labs(title = &#39;Year: {frame_time}&#39;, 
+       x = &#39;% renewables&#39;, 
+       y = &#39;CO2 per cap&#39;) +
+  transition_time(year) +
+  ease_aes(&#39;linear&#39;)</code></pre>
+<pre class="r"><code># Rename columns in co2 dataset for ease
+co2_percap &lt;- co2_percap %&gt;% 
+  rename(year = date) %&gt;% 
+  rename(emissions = value)
+
+# Create full dataset of energy, income and co2 emissions using join functions
+energy_income_co2 &lt;- energy %&gt;% 
+  left_join(., countries, by = &quot;iso3c&quot;) %&gt;% 
+  left_join(., select(co2_percap, -c(iso2c, indicator, indicator_id)), by = c(&quot;iso3c&quot;, &quot;year&quot;, &quot;country&quot;)) %&gt;%
+  mutate(year = as.integer(year)) #Change year to integer so that the animation correctly reflects yearly change
+
+# Create renewables proportion of countries across years
+renewables_proportion_summary &lt;- energy_income_co2 %&gt;%
+  select(-label) %&gt;% 
+  pivot_wider(names_from = variable, values_from = value) %&gt;% #Transform to wide data
+  select(-c(elec_coal, elec_cons, elec_gas, elec_nuc, elec_oil, electric_gen_capacity)) %&gt;% #ALL GOOD TIL NOW
+  group_by(country, year) %&gt;% 
+  summarise(renewables_proportion = (elec_hydro + elec_solar + elec_wind + elec_renew_other) / elecprod * 100,
+            income_level = first(income_level), n = n(),
+            emissions = mean(emissions)) %&gt;%   #Create summary statistics that will be plotted
+  filter(!(is.na(income_level))) %&gt;%
+  filter(year &gt;= 1990)
+
+# Plot faceted (income level) animation of emissions againsnt renewables proportion across years
+ggplot(renewables_proportion_summary, aes(renewables_proportion, emissions, colour = factor(income_level))) +
+  geom_point(show.legend = FALSE) + #Create scatterplot
+  facet_wrap(~ income_level) + #Facet on incomem level
+  scale_x_continuous(labels = scales::percent_format(scale = 1)) +
+  labs(title = &#39;Year: {frame_time}&#39;,
+       x = &#39;% renewables&#39;,
+       y = &#39;CO2 per cap&#39;) +
+  transition_time(year) +
+  ease_aes(&#39;linear&#39;) #Animation controls</code></pre>
+<pre><code>## NULL</code></pre>
+</div>
