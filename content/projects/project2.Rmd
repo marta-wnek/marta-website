@@ -83,7 +83,8 @@ The following is a description of the variables:
 
 ```{r,load_technology_data}
 
-technology <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-07-19/technology.csv')
+technology 
+<- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-07-19/technology.csv')
 
 #get all technologies
 labels <- technology %>% 
