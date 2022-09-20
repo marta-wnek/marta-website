@@ -90,7 +90,7 @@ params:
         title: CV
         url: blogs/aliquam
         
-        [[params.navigation.links]]
+        [[params.navigation.links]]:
           name = "Resume"
           url = "blogs/CV_MWnek.pdf"
         

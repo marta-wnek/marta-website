@@ -9,13 +9,22 @@ image: me.jpg
 keywords: ""
 slug: aliquam
 title: Me in a nutshell
-
-[[params.navigation.links]]
-  name = "Resume"
-  url = "blogs/CV_MWnek.pdf"
+output: pdf_document
+header-includes:
+  - \usepackage{pdfpages}
 
 ---
-  
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(dev = 'pdf')
+```
+
+# My Resume
+
+\includepdf[pages=-]{CV_MWnek.pdf}
+ 
 
 # Key Skills:
 **- IT:** 
