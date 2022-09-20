@@ -110,7 +110,7 @@ ggplot(data = brexit_results_plot_df, aes(x = Party_share, y = leave_share, colo
 
 
 
-![BrexitPlot](brexit1.jpg)
+![BrexitPlot](C:\Users\marta\OneDrive\Pulpit\marta-website\static\img\projects\brexit1.jpg)
 
 
 
