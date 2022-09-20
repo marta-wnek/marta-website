@@ -89,6 +89,11 @@ params:
         subtitle: Me in a nutshell
         title: CV
         url: blogs/aliquam
+        
+        [[params.navigation.links]]
+          name = "Resume"
+          url = "blogs/CV_MWnek.pdf"
+        
       - image: pic05.jpg
         subtitle: How I got into Analytics
         title: My journey
