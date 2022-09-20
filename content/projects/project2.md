@@ -168,7 +168,8 @@ top_20_plot + bottom_20_plot +
   
 ```
 
-![](renewables1.jpg)
+
+image: renewables1.jpg
 
 
 
