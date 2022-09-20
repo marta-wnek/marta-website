@@ -85,7 +85,7 @@ params:
   tiles:
     enable: yes
     showcase:
-      - image: pic01.jpg
+      - image: me.jpg
         subtitle: Me in a nutshell
         title: CV
         url: blogs/aliquam
@@ -93,22 +93,22 @@ params:
         subtitle: How I got into Analytics
         title: My journey
         url: blogs/bempus
-      - image: pic03.jpg
-        subtitle: Lorem Etiam Nullam
-        title: Magna
-        url: blogs/magna
-      - image: pic04.jpg
-        subtitle: Nisl Sed Aliquam
-        title: Ipsum
+      - image: pic07.jpg
+        subtitle: Climate Change and Anomalies
+        title: Ecosystem
         url: blogs/ipsum
       - image: pic05.jpg
-        subtitle: Ipsum Dolor Sit Amet
-        title: Consequat
-        url: blogs/ipsum
-      - image: pic06.jpg
-        subtitle: Feugiat Amet Tempus
-        title: Etiam
-        url: blogs/ipsum
+        subtitle: Political Affiliation on Brexit Voting
+        title: Politics
+        url: projects/magna
+      - image: pic03.jpg
+        subtitle: Renewable Energy Production
+        title: Energy
+        url: projects/zliquam
+     # - image: pic06.jpg
+      #  subtitle: Feugiat Amet Tempus
+       # title: Etiam
+        #url: blogs/ipsum
  # two:
   #  buttonText: Get Started
    # enable: yes
