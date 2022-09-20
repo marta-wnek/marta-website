@@ -9,6 +9,7 @@ image: pic10.jpg
 keywords: ""
 slug: aliquam
 title: Me in a nutshell
+
 ---
 
-View my CV [here](file:///C:/Users/marta/Downloads/CV_Marta%20Wn%C4%99k.pdf).
+View my CV [here](file:///C:/Users/marta/OneDrive/Pulpit/LBS/CV_Marta%20Wn%C4%99k.pdf).
