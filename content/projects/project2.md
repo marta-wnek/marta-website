@@ -169,7 +169,7 @@ top_20_plot + bottom_20_plot +
 ```
 
 
-![RenewablesPercentagePlot](renewables1.jpg)
+![RenewablesPercentagePlot](renewables1.png)
 
 
 
