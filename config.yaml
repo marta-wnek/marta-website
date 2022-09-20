@@ -64,9 +64,9 @@ params:
   image: ''
   name: Your name
   navigation:
-    button1:
-      - name: Contact
-        url: '#'/address
+    #button1:
+    #  - name: Contact
+      #  url: '#'/address
    # button2:
     #  - name: Log In
      #   url: '#'
