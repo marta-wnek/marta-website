@@ -89,6 +89,9 @@ params:
         subtitle: Me in a nutshell
         title: CV
         url: blogs/aliquam
+        button3:
+          - name: Download CV
+            url: content/CV_MWnek.pdf
       - image: pic05.jpg
         subtitle: How I got into Analytics
         title: My journey
