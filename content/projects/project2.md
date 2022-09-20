@@ -5,7 +5,7 @@ categories:
 date: "2017-10-31T22:42:51-05:00"
 description: Share of renewable energy production in the world.
 draft: false
-image: pic07.jpg
+image: pic03.jpg
 keywords: ""
 slug: zliquam
 title: Renewable Energy Production
