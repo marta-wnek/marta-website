@@ -64,7 +64,7 @@ params:
   image: ''
   name: Your name
   navigation:
-     button1:
+   #  button1:
    #   - name: Contact
     #    url: '#'
    # button2:
@@ -89,11 +89,11 @@ params:
         subtitle: Me in a nutshell
         title: CV
         url: blogs/aliquam
-         - image: pic05.jpg
+      - image: pic05.jpg
         subtitle: How I got into Analytics
         title: My journey
         url: blogs/bempus
-          button3:
+    #      button3:
     #        - name: Read my story
      #         url: blogs/bempus
       - image: pic10.jpg
