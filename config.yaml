@@ -74,9 +74,9 @@ params:
       - name: Home
         url: '#'
       - name: About me
-        url: blogs
+        url: blogs/
       - name: My projects
-        url: projects
+        url: projects/
       - name: Elements
         url: elements.html
     menu: Menu
