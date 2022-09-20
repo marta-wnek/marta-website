@@ -14,3 +14,21 @@ title: Me in a nutshell
 
 View my CV [here](file:///C:/Users/marta/OneDrive/Pulpit/LBS/CV_Marta%20Wn%C4%99k.pdf).
 
+
+# Key Skills:
+**- IT:** 
+    *R 
+    *Python
+    *VBA
+    *MySQL
+    *PowerBI
+    
+**- Languages:** 
+    *English (fluent)
+    *German (C1 level)
+    *Polish (native)
+    *French (intermediate)
+    *Russian (basic)
+    *Mandarin (basic)
+    *Spanish (basic)
+    
