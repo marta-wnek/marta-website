@@ -67,9 +67,9 @@ params:
     button1:
       - name: Get Started
         url: blogs
-    button2:
-      - name: Log In
-        url: '#'
+   # button2:
+    #  - name: Log In
+     #   url: '#'
     links:
       - name: Home
         url: '#'
@@ -93,11 +93,11 @@ params:
         subtitle: How I got into Analytics
         title: My journey
         url: blogs/bempus
-      - image: pic07.jpg
+      - image: pic10.jpg
         subtitle: Climate Change and Anomalies
         title: Ecosystem
-        url: blogs/ipsum
-      - image: pic05.jpg
+        url: projects/ipsum
+      - image: pic09.jpg
         subtitle: Political Affiliation on Brexit Voting
         title: Politics
         url: projects/magna

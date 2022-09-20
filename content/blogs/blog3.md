@@ -3,7 +3,10 @@ categories:
 - ""
 - ""
 date: "2017-10-31T22:26:13-05:00"
-description: How did it get here? Read my story.
+description: How did it get here?
+buttonMe:
+      - name: Read my story
+        url: blogs/bempus
 draft: false
 image: pic05.jpg
 keywords: ""
